@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	slog.Info("Starting FOS-Visualizer")
+	slog.Info("Starting FOS-Visualizer...")
 
 	boot.LoadEnv()
 	router := api.SetupRoutes()

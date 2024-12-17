@@ -3,7 +3,7 @@ package api
 import (
 	"net/http"
 
-	"github.com/J4yTr1n1ty/FOS-Visualizer/pkg/formation"
+	"github.com/J4yTr1n1ty/FOS-Visualizer/pkg/web/formation"
 )
 
 func SetupRoutes() *http.ServeMux {
@@ -11,7 +11,7 @@ func SetupRoutes() *http.ServeMux {
 
 	formationHandler := formation.NewHandler()
 
-	mux.HandleFunc("GET /descriptions/{formationString}", formationHandler.GetFormation)
+	mux.HandleFunc("GET /formation/describe", formationHandler.GetFormation)
 
 	return mux
 }
