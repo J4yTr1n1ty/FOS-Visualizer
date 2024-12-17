@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/J4yTr1n1ty/FOS-Visualizer/pkg/parser"
+	"github.com/J4yTr1n1ty/FOS-Visualizer/pkg/lexer"
 )
 
 type FormationHandler struct{}
@@ -31,7 +31,7 @@ func (f *FormationHandler) GetFormation(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	parsedFormation := parser.GetEmptyTestingFormation(requestBody.FormationString)
+	parsedFormation := lexer.GetEmptyTestingFormation(requestBody.FormationString)
 
 	json, err := json.Marshal(parsedFormation)
 	if err != nil {

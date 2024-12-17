@@ -17,53 +17,43 @@ type Sector struct {
 }
 
 type Wagon struct {
-	Status string   `json:"status"`
-	Type   string   `json:"type"`
-	OrdNr  int      `json:"ord_nr"`
-	Offers []string `json:"offers"`
+	Status string       `json:"status"`
+	Type   WagonType    `json:"type"`
+	OrdNr  int          `json:"ord_nr"`
+	Offers []WagonOffer `json:"offers"`
 }
 
 func NewWagon() *Wagon {
 	return &Wagon{}
 }
 
-func (w *Wagon) AddOffer(offer string) {
-	w.Offers = append(w.Offers, offer)
-}
+type WagonType string
 
-func (w *Wagon) RemoveOffer(offer string) {
-	for i, o := range w.Offers {
-		if o == offer {
-			w.Offers = append(w.Offers[:i], w.Offers[i+1:]...)
-		}
-	}
-}
-
-// Types
 const (
-	TypeFirstClassPassager           = "1"
-	TypeSecondClassPassager          = "2"
-	TypeFistAndSecondClassPassager   = "12"
-	TypeCouchetteCoach               = "CC"
-	TypeFamilyCoach                  = "FA"
-	TypeSleepingCoach                = "WL"
-	TypeRestaurant                   = "WR"
-	TypeCombinedDiningAndFirstClass  = "W1"
-	TypeCombinedDiningAndSecondClass = "W2"
-	TypeEngine                       = "LK"
-	TypeLuggageCoach                 = "D"
-	TypeFicticiousCarriage           = "F" // On tracks with sectors, the delta between the length of the train and the stopping edge is filled with fictitious wagons at the front and/or rear.
-	TypeClasslessVehicle             = "K"
-	TypeParkedWagon                  = "X" // parked wagons influence the assignment of the vehicles of a train to the sectors, but are not part of the train in question.
+	FirstClassPassager           WagonType = "1"
+	SecondClassPassager          WagonType = "2"
+	FistAndSecondClassPassager   WagonType = "12"
+	CouchetteCoach               WagonType = "CC"
+	FamilyCoach                  WagonType = "FA"
+	SleepingCoach                WagonType = "WL"
+	Restaurant                   WagonType = "WR"
+	CombinedDiningAndFirstClass  WagonType = "W1"
+	CombinedDiningAndSecondClass WagonType = "W2"
+	Engine                       WagonType = "LK"
+	LuggageCoach                 WagonType = "D"
+	FicticiousCarriage           WagonType = "F" // On tracks with sectors, the delta between the length of the train and the stopping edge is filled with fictitious wagons at the front and/or rear.
+	ClasslessVehicle             WagonType = "K"
+	ParkedWagon                  WagonType = "X" // parked wagons influence the assignment of the vehicles of a train to the sectors, but are not part of the train in question.
 )
 
-// Offers
+type WagonOffer string
+
 const (
-	OfferWheelchairSpaces           = "BHP"
-	OfferBusinessZone               = "BZ"
-	OfferFamilyZone                 = "FZ"
-	OfferBabyCarriagePlatform       = "KW"
-	OfferLowFloorAccess             = "NF"
-	OfferBicycle                    = "VH"
-	OfferBicycleRequiresReservation = "VR"
+	WheelchairSpaces           WagonOffer = "BHP"
+	BusinessZone               WagonOffer = "BZ"
+	FamilyZone                 WagonOffer = "FZ"
+	BabyCarriagePlatform       WagonOffer = "KW"
+	LowFloorAccess             WagonOffer = "NF"
+	Bicycle                    WagonOffer = "VH"
+	BicycleRequiresReservation WagonOffer = "VR"
 )

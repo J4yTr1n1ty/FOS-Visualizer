@@ -1,4 +1,4 @@
-package parser
+package lexer
 
 import "github.com/J4yTr1n1ty/FOS-Visualizer/pkg/models"
 
@@ -10,16 +10,16 @@ func GetEmptyTestingFormation(formationString string) models.TrainFormationAtSto
 
 	testWagon := &models.Wagon{
 		Status: "geschlossen",
-		Type:   models.TypeEngine,
+		Type:   models.Engine,
 		OrdNr:  0,
-		Offers: []string{models.OfferFamilyZone},
+		Offers: []models.WagonOffer{models.FamilyZone},
 	}
 
 	testWagon2 := &models.Wagon{
-		Status: "geschlossen",
-		Type:   models.TypeSecondClassPassager,
+		Status: "",
+		Type:   models.SecondClassPassager,
 		OrdNr:  0,
-		Offers: []string{models.OfferBicycle, models.OfferLowFloorAccess},
+		Offers: []models.WagonOffer{models.Bicycle, models.LowFloorAccess},
 	}
 
 	testSector.Wagons = append(testSector.Wagons, *testWagon)
