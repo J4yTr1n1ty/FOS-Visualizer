@@ -6,15 +6,10 @@ type TokenType int
 
 const (
 	// Special Tokens
-	EOF     TokenType = -1
-	UNKNOWN TokenType = -2
+	EOF TokenType = -1
 
 	// Separators
-	AT TokenType = iota
-	COMMA
-	COLON
-	SEMI_COLON
-	HASHTAG
+	COMMA TokenType = iota
 
 	// OPERATORS
 	START_GROUP
@@ -25,7 +20,7 @@ const (
 	// Value Tokens
 	SECTOR
 	STATUS
-	VEHICLE_TYPE
+	WAGON_TYPE
 	ORDER_NUMBER
 	OFFER
 )
@@ -46,7 +41,7 @@ func (token Token) IsOneOf(tokenTypes ...TokenType) bool {
 }
 
 func (token Token) Debug() {
-	if token.IsOneOf(SECTOR, STATUS, VEHICLE_TYPE, ORDER_NUMBER, OFFER) {
+	if token.IsOneOf(SECTOR, STATUS, WAGON_TYPE, ORDER_NUMBER, OFFER) {
 		fmt.Printf("%s (%s)\n", TokenKindString(token.Type), token.Value)
 	} else {
 		fmt.Printf("%s ()\n", TokenKindString(token.Type))
@@ -64,16 +59,8 @@ func TokenKindString(tokenType TokenType) string {
 	switch tokenType {
 	case EOF:
 		return "EOF"
-	case AT:
-		return "AT"
 	case COMMA:
 		return "COMMA"
-	case COLON:
-		return "COLON"
-	case SEMI_COLON:
-		return "SEMI_COLON"
-	case HASHTAG:
-		return "HASHTAG"
 	case START_GROUP:
 		return "START_GROUP"
 	case END_GROUP:
@@ -82,6 +69,16 @@ func TokenKindString(tokenType TokenType) string {
 		return "VEHICLE_BOUNDRY_START"
 	case VEHICLE_BOUNDRY_END:
 		return "VEHICLE_BOUNDRY_END"
+	case SECTOR:
+		return "SECTOR"
+	case STATUS:
+		return "STATUS"
+	case WAGON_TYPE:
+		return "WAGON_TYPE"
+	case ORDER_NUMBER:
+		return "ORDER_NUMBER"
+	case OFFER:
+		return "OFFER"
 	default:
 		return "UNKNOWN"
 	}

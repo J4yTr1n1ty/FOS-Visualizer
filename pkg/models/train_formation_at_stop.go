@@ -17,7 +17,7 @@ type Sector struct {
 }
 
 type Wagon struct {
-	Status string       `json:"status"`
+	Status WagonStatus  `json:"status"`
 	Type   WagonType    `json:"type"`
 	OrdNr  int          `json:"ord_nr"`
 	Offers []WagonOffer `json:"offers"`
@@ -25,6 +25,19 @@ type Wagon struct {
 
 func NewWagon() *Wagon {
 	return &Wagon{}
+}
+
+type WagonStatus string
+
+const (
+	Closed           WagonStatus = "-"
+	GroupsAtThisStop WagonStatus = ">"
+	Reserved         WagonStatus = "="
+	OpenButNotServed WagonStatus = "%" // Only for Restaurant Wagons
+)
+
+func GetWagonStatusRegex() string {
+	return `-|>|=|%`
 }
 
 type WagonType string
@@ -46,6 +59,10 @@ const (
 	ParkedWagon                  WagonType = "X" // parked wagons influence the assignment of the vehicles of a train to the sectors, but are not part of the train in question.
 )
 
+func GetWagonTypesRegex() string {
+	return `1|2|12|CC|FA|WL|WR|W1|W2|LK|D|F|K|X`
+}
+
 type WagonOffer string
 
 const (
@@ -57,3 +74,7 @@ const (
 	Bicycle                    WagonOffer = "VH"
 	BicycleRequiresReservation WagonOffer = "VR"
 )
+
+func GetWagonOfferRegex() string {
+	return `BHP|BZ|FZ|KW|NF|VH|VR`
+}
