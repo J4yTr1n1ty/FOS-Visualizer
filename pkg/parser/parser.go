@@ -24,6 +24,7 @@ func Parse(tokens []lexer.Token) *models.TrainFormationAtStop {
 	for p.hasTokens() {
 		// TODO: Figure out how to parse the train formation
 		// formation.Sectors = append(formation.Sectors, p.parseSector())
+		break
 	}
 
 	return formation
